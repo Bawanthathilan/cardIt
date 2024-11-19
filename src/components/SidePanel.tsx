@@ -34,7 +34,7 @@ import {BACKGROUND_OPTIONS} from '@/data/backgrounds'
 import {sizes} from '@/data/sizes'
 import { useSettingStore } from '@/_store'
 
-import { Canvg } from 'canvg';
+import { toPng } from 'html-to-image';
 
 export default function SidePanel() {
 
@@ -75,36 +75,22 @@ export default function SidePanel() {
   };
 
   const exportAsPng = async () => {
+    const svg = document.querySelector('.mainSvg');
   
-  if (!svgRef) return;
-
-  // Create a canvas element
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  // Set canvas size to match SVG
-  canvas.width = svgRef.width.baseVal.value;
-  canvas.height = svgRef.height.baseVal.value;
-
-  // Convert SVG to string
-  const svgString = new XMLSerializer().serializeToString(svgRef);
-
-  // Use Canvg to render SVG on canvas
-  const v = await Canvg.from(ctx, svgString);
-  await v.render();
-
-  // Convert canvas to PNG
-  const dataURL = canvas.toDataURL('image/png');
-
-  // Create download link
-  const downloadLink = document.createElement('a');
-  downloadLink.href = dataURL;
-  downloadLink.download = 'exported-design.png';
-  
-  // Trigger download
-  document.body.appendChild(downloadLink);
-  downloadLink.click();
-  document.body.removeChild(downloadLink);
+  try {
+    const dataUrl = await toPng(svg, { 
+      quality: 1,
+      pixelRatio: 2 // For higher resolution
+    });
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.download = 'exported-image.png';
+    link.href = dataUrl;
+    link.click();
+  } catch (error) {
+    console.error('Export failed:', error);
+  }
   };
 
   return (

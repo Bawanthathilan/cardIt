@@ -1,12 +1,11 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SidePanel from "@/components/SidePanel";
 import { BACKGROUND_OPTIONS } from "@/data/backgrounds";
 import { sizes } from "@/data/sizes";
 import { useSettingStore } from "@/_store";
 
 export default function Home() {
-  const svgRefV = useRef<SVGSVGElement>(null);
   const { bg, size, authorImage, authorName, textColor, Title , setSvgRef , svgRef } =
     useSettingStore((state) => state);
   const selectedBg = BACKGROUND_OPTIONS.find((option) => option.name === bg);
@@ -23,7 +22,7 @@ export default function Home() {
     <div className="grid grid-cols-12 gap-4 w-full mt-5 items-center px-10">
       <div className="screen grid grid-cols-7 col-span-12 md:col-span-8">
         <svg
-          ref={svgRefV}
+          className="mainSvg"
           width={displayWidth} // Larger display width
           height={displayHeight}
           viewBox={`0 0 ${selectedSize?.width} ${selectedSize?.height}`}
