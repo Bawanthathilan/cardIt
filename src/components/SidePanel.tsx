@@ -51,7 +51,6 @@ export default function SidePanel() {
     textColor,
     setTitle,
     Title,
-    svgRef
   } = useSettingStore((state) => state);
 
   const handleBackgroundChange = (newBg: string) => {

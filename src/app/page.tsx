@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
 import SidePanel from "@/components/SidePanel";
 import { BACKGROUND_OPTIONS } from "@/data/backgrounds";
 import { sizes } from "@/data/sizes";
 import { useSettingStore } from "@/_store";
 
 export default function Home():any {
-  const { bg, size, authorImage, authorName, textColor, Title , setSvgRef , svgRef } =
+  const { bg, size, authorImage, authorName, textColor, Title } =
     useSettingStore((state) => state);
   const selectedBg = BACKGROUND_OPTIONS.find((option) => option.name === bg);
   const selectedSize:any = sizes.find((option) => option.label === size);
@@ -61,12 +60,16 @@ export default function Home():any {
           {Title && (
             <text
               x="50"
-              y="70"
-              fontSize="30"
+              y="100"
+              fontSize="40"
               className=" font-bold text-white"
               fill={textColor}
             >
-              {Title}
+              {Title.split('\n').map((line, index) => (
+                <tspan key={index} x="50" dy={index === 0 ? 0 : "1.2em"}>
+                  {line}
+                </tspan>
+              ))}
             </text>
           )}
           {/* Author Name */}

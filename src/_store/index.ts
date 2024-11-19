@@ -3,7 +3,6 @@ import { devtools } from 'zustand/middleware';
 
 // State types
 interface States {
-  svgRef:SVGAElement | null,
   bg: string;
   size:string;
   authorImage:string | null | any;
@@ -20,7 +19,6 @@ interface Actions {
   setAuthorName: (name: string) => void;
   setTitle:(name:string)=>void;
   settextColor:(color:string)=>void;
-  setSvgRef: (ref) => void;
 }
 
 // useCounterStore
@@ -32,7 +30,7 @@ export const useSettingStore = create<States & Actions>((set) => ({
   authorImage: '/avataaars.png',
   authorName: 'John Doe',
   Title:'Lorem ipsum odor amet, consectetuer adipiscing elit.',
-  textColor:'#000',
+  textColor:'#656565',
     
   // Actions
   setBg: (newBg: string) => set((state) => ({ ...state, bg: newBg })),
@@ -41,5 +39,4 @@ export const useSettingStore = create<States & Actions>((set) => ({
   setAuthorName: (name) => set((state) => ({ ...state, authorName: name })),
   setTitle: (title) => set((state) => ({ ...state, Title: title })),
   settextColor: (color) => set((state) => ({ ...state, textColor: color })),
-  setSvgRef: (ref) => set({ svgRef: ref }),
 }));
