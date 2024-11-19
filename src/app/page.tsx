@@ -5,11 +5,11 @@ import { BACKGROUND_OPTIONS } from "@/data/backgrounds";
 import { sizes } from "@/data/sizes";
 import { useSettingStore } from "@/_store";
 
-export default function Home() {
+export default function Home():any {
   const { bg, size, authorImage, authorName, textColor, Title , setSvgRef , svgRef } =
     useSettingStore((state) => state);
   const selectedBg = BACKGROUND_OPTIONS.find((option) => option.name === bg);
-  const selectedSize = sizes.find((option) => option.label === size);
+  const selectedSize:any = sizes.find((option) => option.label === size);
 
   // Calculate the display dimensions for the SVG
   const displayWidth = 1200; // Fixed display width
@@ -30,7 +30,7 @@ export default function Home() {
         >
           {/* Background */}
           <foreignObject x="0" y="0" width="100%" height="100%">
-            <div xmlns="http://www.w3.org/1999/xhtml" className="w-full h-full">
+            <div className="w-full h-full">
               {selectedBg?.component}
             </div>
           </foreignObject>
@@ -40,8 +40,8 @@ export default function Home() {
             <g>
               <clipPath id="roundedRectClip">
                 <rect
-                  x="20"
-                  y={selectedSize?.height - 100}
+                  x="50"
+                  y={selectedSize?.height - 150}
                   width="80"
                   height="80"
                   rx="20"
@@ -50,8 +50,8 @@ export default function Home() {
               </clipPath>
               <image
                 href={authorImage}
-                x="20"
-                y={selectedSize?.height - 100}
+                x="50"
+                y={selectedSize?.height - 150}
                 width="80"
                 height="80"
                 clipPath="url(#roundedRectClip)"
@@ -60,7 +60,7 @@ export default function Home() {
           )}
           {Title && (
             <text
-              x="30"
+              x="50"
               y="70"
               fontSize="30"
               className=" font-bold text-white"
@@ -72,8 +72,8 @@ export default function Home() {
           {/* Author Name */}
           {authorName && (
             <text
-              x="120" // Adjust horizontal position
-              y={selectedSize?.height - 50} // Adjust vertical position relative to bottom
+              x="160" // Adjust horizontal position
+              y={selectedSize?.height - 100} // Adjust vertical position relative to bottom
               fontSize="24"
               className=" font-bold text-white"
               fill={textColor}

@@ -75,7 +75,7 @@ export default function SidePanel() {
   };
 
   const exportAsPng = async () => {
-    const svg = document.querySelector('.mainSvg');
+    const svg:any = document.querySelector('.mainSvg');
   
   try {
     const dataUrl = await toPng(svg, { 
