@@ -11,7 +11,7 @@ const Navbar = () => {
             
             <ul className=' text-sm flex flex-row gap-3 items-center justify-center font-semibold'>
                 <li>
-                  <Link href="https://buymeacoffee.com/bawanthathilan" target='_blank'>
+                  <Link href="https://github.com/Bawanthathilan/cardIt" target='_blank'>
                   <GithubIcon/>
                   </Link>
                   </li>
