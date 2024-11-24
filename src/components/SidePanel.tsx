@@ -51,6 +51,8 @@ export default function SidePanel() {
     textColor,
     setTitle,
     Title,
+    designation,
+    setDesignation
   } = useSettingStore((state) => state);
 
   const handleBackgroundChange = (newBg: string) => {
@@ -136,6 +138,15 @@ export default function SidePanel() {
             placeholder="Enter your name"
             value={authorName}
             onChange={(e) => setAuthorName(e.target.value)}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="designation">Designation</Label>
+          <Input
+            id="designation"
+            placeholder="Enter your designation"
+            value={designation}
+            onChange={(e) => setDesignation(e.target.value)}
           />
         </div>
         <div className="space-y-2">

@@ -9,6 +9,7 @@ interface States {
   authorName:string;
   Title:string
   textColor:string
+  designation:string
 }
 
 // Action types
@@ -19,6 +20,7 @@ interface Actions {
   setAuthorName: (name: string) => void;
   setTitle:(name:string)=>void;
   settextColor:(color:string)=>void;
+  setDesignation:(designation:string)=>void;
 }
 
 // useCounterStore
@@ -31,6 +33,7 @@ export const useSettingStore = create<States & Actions>((set) => ({
   authorName: 'John Doe',
   Title:'Lorem ipsum odor amet, consectetuer adipiscing elit.',
   textColor:'#656565',
+  designation:'',
     
   // Actions
   setBg: (newBg: string) => set((state) => ({ ...state, bg: newBg })),
@@ -39,4 +42,5 @@ export const useSettingStore = create<States & Actions>((set) => ({
   setAuthorName: (name) => set((state) => ({ ...state, authorName: name })),
   setTitle: (title) => set((state) => ({ ...state, Title: title })),
   settextColor: (color) => set((state) => ({ ...state, textColor: color })),
+  setDesignation: (designation) => set((state) => ({ ...state, designation: designation })),
 }));

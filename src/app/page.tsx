@@ -5,7 +5,7 @@ import { sizes } from "@/data/sizes";
 import { useSettingStore } from "@/_store";
 
 export default function Home():any {
-  const { bg, size, authorImage, authorName, textColor, Title } =
+  const { bg, size, authorImage, authorName, textColor, Title , designation } =
     useSettingStore((state) => state);
   const selectedBg = BACKGROUND_OPTIONS.find((option) => option.name === bg);
   const selectedSize:any = sizes.find((option) => option.label === size);
@@ -18,7 +18,7 @@ export default function Home():any {
 
     
   return (
-    <div className="grid grid-cols-12 gap-4 w-full mt-5 items-center px-10">
+    <div className="grid grid-cols-12 gap-4 w-full items-center px-10">
       <div className="screen grid grid-cols-7 col-span-12 md:col-span-8">
         <svg
           className="mainSvg"
@@ -82,6 +82,19 @@ export default function Home():any {
               fill={textColor}
             >
               {authorName}
+            </text>
+          )}
+
+           {/* designation Name */}
+           {designation && (
+            <text
+              x="160" 
+              y={selectedSize?.height - 80} 
+              fontSize="20"
+              className=" font-bold text-white"
+              fill={textColor}
+            >
+              {designation}
             </text>
           )}
         </svg>
